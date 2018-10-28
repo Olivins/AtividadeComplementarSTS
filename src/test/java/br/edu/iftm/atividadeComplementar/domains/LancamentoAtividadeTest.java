@@ -61,5 +61,29 @@ public class LancamentoAtividadeTest {
 		String semestre = lancamentoAtividade.getSemestreAtividade();
 		Assert.assertEquals(semestre,"2013-2");
 	}
+	
+	@Test
+	public void testeLancamentoSegundoSemestre() {
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_MONTH,1);
+		c.set(Calendar.MONTH, 6);
+		c.set(Calendar.YEAR, 2018);
+		lancamentoAtividade.setDataFim(c.getTime());
+		
+
+		Atividade atividade = new Atividade();
+		atividade .setNome("Monitoria");
+		atividade.setMaximoAtividadesSemestre(1);
+		atividade.setPercentualPorAtividade(100);
+		atividade.setPercentualCargaHoraria(50);
+		
+		
+		lancamentoAtividade.setAtividade(atividade);
+		lancamentoAtividade.setQuantidadeHoras(30);
+		
+		
+		int horasAproveitadas = lancamentoAtividade.getHorasAproveitadas();
+		Assert.assertEquals(30, horasAproveitadas);
+	}
 
 }
